@@ -16,8 +16,6 @@
 
     function musiXmatch( MUSIXMATCH_KEYS, $http, $q ){
 
-
-
         return {
             Artist : {
                 // reserved for additional functionality
