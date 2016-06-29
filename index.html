@@ -6,14 +6,16 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     </head>
-    <body ng-controller="mainController">
+    <body ng-cloak ng-controller="mainController">
+
+        <div class="page-header">
+            <h1>Lyrica</h1>
+        </div>
+
         <div class="container-fluid">
-            <div class="row bg-primary">
-                <div class="col-sm-12"><p><h1>Lyrica</h1></p></div>
-            </div>
-            <br />
+
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="artist" class="col-sm-2 control-label">Artist</label>
@@ -29,10 +31,17 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" ng-click="apiCall()">Get Lyrics</button>
+                        <button type="submit" class="btn btn-default btn-primary" ng-disabled="!model.song || !model.artist" ng-click="getLyrics()">Get Lyrics</button>
                     </div>
                 </div>
             </form>
+            </div>
+            <div class="row" ng-show="model.error">
+                <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+                    <div class="alert alert-warning">
+                        {{model.error}}
+                    </div>
+                </div>
             </div>
             <div class="row" ng-show="model.lyrics">
                 <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
@@ -46,8 +55,8 @@
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script src="app.js"></script>
+        <script src="musiXmatchService.js"></script>
         <script src="mainController.js"></script>
     </body>
 </html>
